@@ -1,0 +1,38 @@
+.theGame {
+  padding: 70px 0;
+  border: 3px solid green;
+  text-align: center;
+  padding-top: 10px;
+  background-color: aqua;
+
+}
+
+#playGame {
+
+  background-color: red;
+  text-decoration: solid;
+  color: antiquewhite;
+  text-align: center;
+}
+
+#gameRules {
+  background-color: green;
+  text-decoration: solid;
+  color: antiquewhite;
+  text-align: center;
+
+}
+
+body {
+  background-color: black;
+
+}
+
+#theButtons {
+
+  padding: 70px 0;
+  text-align: center;
+  padding-top: 10px;
+  background-color: black;
+
+}
