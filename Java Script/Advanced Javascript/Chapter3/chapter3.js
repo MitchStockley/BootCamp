@@ -239,12 +239,12 @@
 // let streetName = company.address[0].street;
 // console.log(streetName);
 
-let people = {friends:[]};
-let friend1 = {fname:"Anna", lname:"Jonesy", Id:1000};
-let friend2 = {fname:"Ane", lname:"Jonesie", Id:1500};
-let friend3 = {fname:"Annea", lname:"Jones", Id:10090};
-people.friends.push(friend1,friend2,friend3);
-console.log(people);  
+// let people = {friends:[]};
+// let friend1 = {fname:"Anna", lname:"Jonesy", Id:1000};
+// let friend2 = {fname:"Ane", lname:"Jonesie", Id:1500};
+// let friend3 = {fname:"Annea", lname:"Jones", Id:10090};
+// people.friends.push(friend1,friend2,friend3);
+// console.log(people);  
 
 const theList = ['Laurence', 'Svekis', true, 35, null, undefined,
 {test: 'one', score: 55}, ['one', 'two']];
