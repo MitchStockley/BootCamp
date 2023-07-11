@@ -139,20 +139,31 @@
 // console.log(name);
 // }
 
-let numbers = [];
-for (let i = 0; i < 10; i++) {
-    numbers.push(i);
+// let numbers = [];
+// for (let i = 0; i < 10; i++) {
+//     numbers.push(i);
+// }
+
+// console.log(numbers);
+// console.log("normal for loop");
+
+// for (let x = 0; x < numbers.length; x++) {
+//     console.log(numbers[x]);
+// }
+
+// console.log("for of loop");
+// for (let e of numbers) {
+//     console.log(e);
+
+// }
+
+
+
+let dog = {
+    name: "bruno",
+    color: "Brown"
 }
 
-console.log(numbers);
-console.log("normal for loop");
-
-for (let x = 0; x < numbers.length; x++) {
-    console.log(numbers[x]);
-}
-
-console.log("for of loop");
-for (let e of numbers) {
-    console.log(e);
-
+for(let key in dog) {
+    console.log(key, dog[key]);
 }
