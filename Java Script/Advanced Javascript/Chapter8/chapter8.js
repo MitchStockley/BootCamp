@@ -65,3 +65,4 @@ function printStuff(element,index) {
 
     console.log("printing stuff: ", element," on array position", index);
 }
+
