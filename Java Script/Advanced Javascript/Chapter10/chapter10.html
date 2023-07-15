@@ -1,36 +1,691 @@
 <!DOCTYPE html>
 <html>
-<title>Dynamic Element
-    Manipulation Using the DOM</title>
 
 <body>
-    <h1>Let's find the treasure</h1>
-    <div id="forest">
-        <div id="tree1">
-            <div id="squirrel"></div>
-            <div id="flower"></div>
-        </div>
-        <div id="tree2">
-            <div id="shrubbery">
-                <div id="treasure"></div>
-            </div>
-            <div id="mushroom">
-                <div id="bug"></div>
-            </div>
-        </div>
-    </div>
-    <script>
-
-        // console.dir(document.body);
-        // console.dir(document.body.children.forest.children.tree2.children.
-        //     shrubbery.children.treasure);
-        // console.dir(document.body.childNodes[3].childNodes[3].childNodes[1].childNodes[1]);
-        // console.dir(document.body.childNodes[3].childNodes[3].childNodes[1].
-        //     children.treasure);
-        console.dir(document.body.children.forest.children.tree2.parentElement);
-        console.dir(document.body.children.forest.children.tree2.previousElementSibling);
-        console.dir(document.body.children.forest.children.tree2.nextElementSibling);
-    </script>
+  <script>
+    function addRandomNumber() {
+      let el = document.createElement("p");
+      el.innerText = Math.floor(Math.random() * 100);
+      document.body.appendChild(el);
+    }
+  </script>
+  <button onclick="addRandomNumber()">Add a number</button>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    window.onload = function () {
+      document.getElementById("square").addEventListener("click",
+        changeColor);
+    }
+    function changeColor() {
+      let red = Math.floor(Math.random() * 256);
+      let green = Math.floor(Math.random() * 256);
+      let blue = Math.floor(Math.random() * 256);
+      this.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
+  </script>
+  <div id="square" style="width:100px;height:100px;background-color:grey;">Click for magic</div>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <title>Complete JavaScript Course</title>
+</head>
+
+<body>
+  <div id="message"></div>
+  <div id="output"></div>
+  <script> const message = document.querySelector("#message");
+      let myArray = ["Mitch", "james", "Con", "Fraser"];
+    build();
+    function build() {
+      let html = "<h1>My Friends Table</h1><table>";
+      myArray.forEach((item, index) => {
+        html += `<tr class="box" data-row="${index + 1}" 
+data-name="${item}" onclick="getData(this)">
+<td>${item}</td>`;
+        html += `<td >${index + 1}</td></tr>`;
+      });
+      html += "</table>";
+      document.getElementById("output").innerHTML = html;
+    }
+    function getData(el) {
+      let temp = el.getAttribute("data-row");
+      let tempName = el.getAttribute("data-name");
+      message.innerHTML = `${tempName} is in row #${temp}`;
+    }
+  </script>
+
+
+  </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    function changeAttr() {
+      let el = document.getElementById("shape");
+      el.setAttribute("style", "background-color:red;border:1px solid black"); //Manipulating attributes // changes square to circle by manipulationg the attributes
+      el.setAttribute("id", "new");
+      el.setAttribute("class", "circle");
+    }
+  </script>
+  <style>
+    div {
+      height: 100px;
+      width: 100px;
+      background-color: yellow;
+    }
+
+    .circle {
+      border-radius: 50%;
+    }
+  </style>
+  <div id="shape" class="square"></div>
+  <button onclick="changeAttr()">Change attributes...</button>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    function changeVisibility() {
+      document.getElementById("shape").classList.toggle("hide"); //toggeling classes - square appears and the disapears onclick of button
+    }
+  </script>
+  <style>
+    .hide {
+      display: none;
+    }
+
+    .square {
+      height: 100px;
+      width: 100px;
+      background-color: yellow;
+    }
+  </style>
+  <div id="shape" class="square"></div>
+  <button onclick="changeVisibility()">Magic!</button>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    function change() {
+      document.getElementById("shape").classList.remove("blue"); //color of square changes to yellow when clicked
+    }
+  </script>
+  <style>
+    .square {
+      height: 100px;
+      width: 100px;
+      background-color: yellow;
+    }
+
+    .square.blue {
+      background-color: blue;
+    }
+  </style>
+  <div id="shape" class="square blue"></div>
+  <button onclick="change()">Change!</button> 
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  
+  <div id="shape" class="square blue"></div>
+  <button onclick="disappear()">Disappear!</button>
+</body>
+<script>
+  function disappear() {
+    document.getElementById("shape").classList.add("hide"); //Adding classes to elements
+  }
+</script>
+<style>
+  .hide {
+    display: none;
+  }
+
+  .square {
+    height: 100px;
+    width: 100px;
+    background-color: yellow;
+  }
+
+  .square.blue {
+    background-color: blue;
+  }
+</style>
+
+</html>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+
+
+  <div id="red"></div>
+  <div id="orange"></div>
+  <div id="yellow"></div>
+  <div id="green"></div>
+  <div id="blue"></div>
+  <div id="indigo"></div>
+  <div id="violet"></div>
+  <button onclick="rainbowify()">Make me a rainbow</button>
+</body>
+<script>
+  function rainbowify() {
+    let divs = document.getElementsByTagName("div");
+    for (let i = 0; i < divs.length; i++) {
+      divs[i].style.backgroundColor = divs[i].id; //all div elements get stored in an array //loop over divs aray //For every element in the divs array, we are setting the backgroundColor property of style to the ID of the element.
+    }
+  }
+</script>
+<style>
+  div {
+    height: 30px;
+    width: 30px;
+    background-color: white;
+  }
+</style>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <p id="magic">I might disappear and appear.</p>
+  <button onclick="toggleDisplay()">Magic!</button>
+  <script>
+    function toggleDisplay() {
+      let p = document.getElementById("magic");
+      if (p.style.display === "none") {
+        p.style.display = "block";
+      } else {
+        p.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+
+</html> -->
+<!-- We can add this style using JavaScript as well. Here is a little HTML and JavaScript
+snippet that will toggle the displaying of a piece of text -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <button onclick="message(this)">Button 1</button>
+  <button onclick="message(this)">Button 2</button>
+  <script>
+    function message(el) {
+      console.dir(el.textContent);  //displaying textContent in each element using onclick. 
+    }
+  </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <div id="one" onclick="alert('Ouch! Stop it!')">Don't click here!  //element click handler -
+  </div>
+</body>
+
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    function stop() {
+      alert("Ouch! Stop it!");
+    }
+  </script>
+  <div id="one" onclick="stop()">Don't click here!</div> 
+</body>
+
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html>
+<body>
+  <div id="one">Don't click here!</div>
+  <script>
+    document.getElementById("one").onclick = function () {
+      alert("ouch! dont click there");
+    }
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Element click handler
+HTML elements can do something when they are clicked. This is because a
+JavaScript function can be connected to an HTML element. Here is one snippet in
+which the JavaScript function associated with the element is specified in the HTML -->
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <body>
+    <h1>Just an example</h1>
+    <div id="one" class="example">Hi!</div>
+    <div id="two" class="example">there!</div>
+    <div id="three" class="example">you!</div>
+    <div id="four" class="example">you!</div>
+    <script>
+     
+     const eles = document.querySelectorAll(".example");
+     console.log(eles);
+     eles.forEach((el) => {  //loops through each one in the array. 
+      console.log(el);
+      
+     });
+     
+    </script>
+  </body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <body>
+    <h1>Just an example</h1>
+    <div id="one" class="example">Hi!</div>
+    <div id="two" class="example">there!</div>
+    <div id="three" class="example">you!</div>
+    <div id="four" class="example">you!</div>
+    <script>
+      let elements = document.querySelector(".example");
+      console.log(elements);
+      
+    </script>
+  </body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practise exercise 10.3</title>
+</head>
+<body>
+    <p>Hi</p>
+    <p>How</p>
+    <p>you</p>
+    <script>
+       let tags = document.getElementsByTagName("p");
+    console.log(tags.item(1));
+    console.log(tags[1]);
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <body>
+    <h1>Just an example</h1>
+    <div id="one" class="example">Hi!</div>
+    <div id="two" class="example">Hi!</div>
+    <div id="three" class="something">Hi!</div>
+    <script>
+      //console.log(document.getElementById("two"));
+    //   let list = document.getElementsByTagName("div")
+    //   console.log(list.item(2));
+    console.log(document.getElementsByTagName("h1"));
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+ <body>
+ <h1>Welcome page</h1>
+ <p id="greeting">
+ Hi!
+ </p>
+ <script> 
+console.log(document.body.greeeting.innerText = "Bye");
+</script>
+ </body>
+</html -->
