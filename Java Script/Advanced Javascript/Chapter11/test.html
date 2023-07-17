@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<style>
+  div {
+    background-color: purple;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+  }
+</style>
+
+<body>
+  <button onclick="toTheRight()">move</button>
+  <div id="block"></div>
+  <script>
+    let b = document.getElementById("block");
+    let counter = 30;
+    let speed = 10;
+    let dir = 1;
+    let pos = 0;
+    function toTheRight() {
+      let animation = setInterval(frame, speed);
+
+
+
+
+
+      function frame() {
+        pos = pos + dir;
+        counter--;
+        checkPosition(pos);
+        b.style.left = pos + "px"
+        if (counter < 0) {
+          clearInterval(animation);
+          counter = 30;
+        }
+      }
+
+      function checkPosition(pos) {
+        if (pos > 800) {
+          dir *= -1;
+
+        } if (pos < 0) {
+          dir *= -1;
+
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

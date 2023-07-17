@@ -1,0 +1,527 @@
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter11 - Interactive Content and Event Listeners</title> 
+  </head>
+  <body>
+<p id ="change"> Change color </p> 
+
+  </body>
+  <script>
+document.getElementById("change").addEventListener("click",changeColor);
+let darkMode = true;
+function changeColor(e) {  //changing to darkmode (toggeling)
+    if(darkMode) {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        darkMode = false;
+    } else {
+        document.body.style.backgroundColor = "grey";
+        document.body.style.color = "black";
+        darkMode = true;
+    }
+}
+
+  </script>
+</html> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practise - 11.2</title>
+</head>
+<body>
+    <div>red</div>
+    <div>blue</div>
+    <div>green</div>
+    <div>purple</div>
+
+<script>
+
+    let divs = document.querySelectorAll("div");
+    divs.forEach(element => {
+        element.addEventListener("click", changeColor);
+       
+    })
+
+    function changeColor(event) {
+        event.target.style.backgroundColor = event.target.textContent;
+    }
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 11.3</title>
+  </head>
+  <body>
+    <script>
+      window.onload = (function (e) {
+        message("window ready", e);
+      });
+      document.addEventListener("DOMContentLoaded", (e) => {
+        message("Document ready",e);
+      });
+      function message(mess, event) {
+        console.log(mess, event);
+      }
+    </script>
+  </body>
+</html>
+<!doctype html>
+<html>
+ <body>
+ <div id="divvy" onmouseover="changeColor()" style="width: 100px; 
+height: 100px; background-color: pink;">
+ <script>
+ function changeColor() {
+ document.getElementById("divvy").style.backgroundColor = 
+"blue";
+ }
+ </script>
+ </body>
+</html>
+<!doctype html>
+<html>
+ <body>
+ <div id="divvy" style="width: 100px; height: 100px; background-color: pink;">
+ <script>
+ window.onload = function donenow() {
+ console.log("hi");
+ document.getElementById("divvy").addEventListener("mousedown", 
+function() { changeColor(this, "green"); });
+ document.getElementById("divvy").addEventListener("mouseup", 
+function() { changeColor(this, "yellow"); });
+ document.getElementById("divvy").addEventListener("dblclick", 
+function() { changeColor(this, "black"); });
+ document.getElementById("divvy").addEventListener("mouseout", 
+function() { changeColor(this, "blue"); });
+ }
+ console.log("hi2");
+ function changeColor(el, color) {
+ el.style.backgroundColor = color;
+ }
+ </script>
+ </body>
+</html>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="divvy"></div>
+    <script>
+      window.onload = function donenow() {
+        document.querySelector("divvy").textContent = "Hello world";
+
+        document.querySelector("divvy").style.backgroundColor = "purple";
+
+        document.querySelector("divvy").style.height = "100px";
+
+        document.querySelector("divvy").style.width = "100px";
+
+        document
+          .querySelector("divvy")
+          .addEventListener("mousedown", function (e) {
+            changeColor(e, "green");
+          });
+        document
+          .querySelector("divvy")
+          .addEventListener("mouseover", function (e) {
+            changeColor(e, "red");
+          });
+        document
+          .querySelector("divvy")
+          .addEventListener("mouseup", function (e) {
+            changeColor(e, "blue");
+          });
+        document
+          .querySelector("divvy")
+          .addEventListener("mouseout", function (e) {
+            changeColor(e, "yellow");
+          });
+      };
+      console.log("hi2");
+      function changeColor(e, color) {
+        e.target.style.backgroundColor = color;
+        console.log(color, e.type);
+      }
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="welcome">Hi there!</div>
+    <form>
+      <input type="text" name="firstname" placeholder="First name" />
+      <input type="text" name="lastname" placeholder="Last name" />
+      <input type="button" onclick="sendInfo()" value="Submit" />
+    </form>
+    <script>
+      function sendInfo() {
+        let p = event.target.parentElement;
+        message("Welcome " + p.firstname.value + " " + p.lastname.value);
+      }
+      function message(m) {
+        document.getElementById("welcome").innerHTML = m;
+      }
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>exercise 11.5</title>
+</head>
+
+<body>
+  <div class="output"></div>
+  <input type="text" name="message" placeholder="Your Message" />
+  <button class="btn1">Button 1</button>
+  <button class="btn2">Button 2</button>
+  <div>
+    <button class="btn3">Log</button>
+  </div>
+  <script>
+    let output = document.querySelector(".output");
+    let input = document.querySelector("input");
+    let btn1 = document.querySelector(".btn1");
+    let btn2 = document.querySelector(".btn2");
+    let btn3 = document.querySelector(".btn3");
+    let logs = [];
+    btn1.addEventListener("click", logEvent);
+    btn2.addEventListener("click", logEvent);
+    btn3.addEventListener("click", printLogs);
+
+    function logEvent(e) {
+      console.log(input.value);
+      let log = {};
+      output.textContent = input.value;
+      log.input = input.value;
+      log.eventType = e.type;
+      log.tagName = e.target.tagName;
+      log.className = e.target.className;
+      logs.push(log);
+    }
+
+    function printLogs() {
+      input.value = "";
+      output.textContent = "";
+      logs.forEach(e => {
+        console.log(e.tagName, e.className, e.input, e.eventType);
+      })
+    }
+
+  </script>
+</body>
+
+</html>
+
+<body>
+  <style>
+    div {
+      border: 1px solid black;
+      margin-left: 5px;
+    }
+  </style>
+  <div id="message">Bubbling events</div>
+  <div id="output">
+    1
+    <div>
+      2
+      <div>
+        3
+        <div>
+          4
+          <div>5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function bubble() {
+      console.log(this.innerText);
+    }
+    let divs = document.getElementsByTagName("div");
+    for (let i = 0; i < divs.length; i++) {
+      divs[i].addEventListener("click", bubble,true);
+    }
+  </script>
+</body>
+
+</html>
+ <--This example will demonstrate event capturing and the delegation of page elements.
+  By adding event listeners to the parent and children within the main element, this
+  example will order the console messages according to the event capture properties.
+
+  <!doctype html>
+  <html>
+  
+  <head>
+    <title>Practice exercise 11.6</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        border: 1px solid black
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="box" id="box0">Box #1</div>
+      <div class="box" id="box1">Box #2</div>
+      <div class="box" id="box2">Box #3</div>
+      <div class="box" id="box3">Box #4</div>
+    </div>
+    <script>
+      const main = document.querySelector(".container");
+      const boxes = document.querySelectorAll(".box");
+      main.addEventListener("click", e => {
+        console.log("4");
+      }, false);
+      main.addEventListener("click", e => {
+        console.log("1");
+      }, true);
+      boxes.forEach(ele => {
+        ele.addEventListener("click", (e) => {
+          console.log("3");
+          console.log(e.target.textContent);
+        }, false);
+        ele.addEventListener("click", (e) => {
+          console.log("2");
+          console.log(e.target.textContent);
+        }, true);
+      });
+    </script>
+  </body>
+  
+  </html>
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div id="welcome">Hi there!</div>
+  <form>
+    <input type="text" name="firstname" placeholder="First name" onchange="logEvent()" />
+    <input type="text" name="lastname" placeholder="Last name" onblur="logEvent()" />
+    <input type="button" onclick="sendInfo()" value="Submit" />
+  </form>
+  <script>
+    function logEvent() {
+      let p = event.target;
+      if (p.name == "firstname") {
+        message("First Name Changed to " + p.value);
+      } else {
+        message("Last Name Changed to " + p.value);
+      }
+    }
+    function sendInfo() {
+      let p = event.target.parentElement;
+      message("Welcome " + p.firstname.value + " " + p.lastname.
+        value);
+    }
+    function message(m) {
+      document.getElementById("welcome").innerHTML = m;
+    }
+  </script>
+</body>
+
+</html>
+
+<!doctype html>
+<html>
+
+<head>
+  <title>Exercise 11.7</title>
+</head>
+
+<body>
+  <div class="output1">
+  </div>
+  <input type="text" placeholder="First Name" name="first"><br>
+  <input type="text" placeholder="Last Name" name="last"><br>
+  <script>
+    const output = document.querySelector(".output1");
+    const in1 = document.querySelector("input[name='first']");
+    const in2 = document.querySelector("input[name='last']");
+    in1.addEventListener("change", (e) => {
+      console.log("change");
+      updater(in1.value);
+    });
+    in1.addEventListener("blur", (e) => {
+      console.log("blur");
+    });
+    in1.addEventListener("focus", (e) => {
+      console.log("focus");
+    });
+    in2.addEventListener("change", (e) => {
+      console.log("change");
+      updater(in2.value);
+    });
+    in2.addEventListener("blur", (e) => {
+      console.log("blur");
+    });
+    in2.addEventListener("focus", (e) => {
+      console.log("focus");
+    });
+    function updater(str) {
+      output.textContent = str;
+    }
+  </script>
+</body>
+
+</html>
+<!doctype html>
+<html>
+
+<body>
+
+  <body>
+    <div id="wrapper">JavaScript is fun!</div>
+    <input type="text" name="myNum1" onkeypress="return numCheck()">
+    <input type="text" name="myNum2" onkeypress="return numCheck2()">
+    <script>
+      function numCheck() {
+        message("Number: " + !isNaN(event.key));
+        return !isNaN(event.key);
+      }
+      function numCheck2() {
+        message("Not a number: " + isNaN(event.key));
+        return isNaN(event.key);
+      }
+      function message(m) {
+        document.getElementById('wrapper').innerHTML = m;
+      }
+    </script>
+  </body>
+
+</html>
+
+<!doctype html>
+<html>
+
+<head>
+  <title>Exercise 11.8</title>
+</head>
+
+<body>
+  <div class="output"></div>
+  <input type="text" name="myNum1">
+  <input type="text" name="myNum2">
+  <script>
+    const eles = document.querySelectorAll("input");
+    const output = document.querySelector(".output");
+    eles.forEach(el => {
+      el.addEventListener("keydown", (e) => {
+        if (!isNaN(e.key)) {
+          output.textContent += e.key;
+        }
+      });
+      el.addEventListener("keyup", (e) => {
+        console.log(e.key);
+      });
+      el.addEventListener("paste", (e) => {
+        console.log('pasted');
+      });
+    });
+  </script>
+</body>
+
+</html>
+
+<!doctype html>
+<html>
+
+<body>
+  <div id="wrapper"></div>
+  <form action="anotherPage.html" method="get" onsubmit="return valForm()">
+    <input type="text" id="firstName" name="firstName" placeholder="First name" />
+    <input type="text" id="lastName" name="lastName" placeholder="Last name" />
+    <input type="text" id="age" name="age" placeholder="Age" />
+    <input type="submit" value="submit" />
+  </form>
+  <script>
+    function valForm() {
+      var p = event.target.children;
+      if (p.firstName.value == "") {
+        message("Need a first name!!");
+        return false;
+      }
+      if (p.lastName.value == "") {
+        message("Need a last name!!");
+        return false;
+      }
+      if (p.age.value == "") {
+        message("Need an age!!");
+        return false;
+      }
+      return true;
+    }
+    function message(m) {
+      document.getElementById("wrapper").innerHTML = m;
+    }
+  </script>
+</body>
+
+</html>
+<!doctype html>
+<html>
+
+<head>
+  <title>JS Tester</title>
+</head>
+
+<body>
+  <div id="output"></div>
+  <form action="anotherPage.html" method="get">
+    First: <input type="text" name="first">
+    <br>Last: <input type="text" name="last">
+    <br>Age: <input type="number" name="age">
+    <br><input type="submit" value="submit">
+  </form>
+  <script>
+    let output = document.getElementById("output");
+    const form = document.querySelector("form");
+    //const email = document.querySelector("#email");
+    form.addEventListener("submit", (e) => {
+      let error = false;
+      if (checker(form.first.value)) {
+        output.innerText += "first name needed ";
+        console.log("First Name needed");
+        error = true;
+      }
+      if (checker(form.last.value)) {
+        output.innerText += "last name needed ";
+        console.log("Last Name needed");
+        error = true;
+      }
+      if (form.age.value < 19) {
+        output.innerText += "You must be 19 or over";
+        console.log("You must be 19 or over");
+        error = true;
+      }
+      if (error) {
+        e.preventDefault();
+        output.innerText += " :Please review the form";
+        console.log("please review the form");
+      }
+    });
+    function checker(val) {
+      console.log(val.length);
+      if (val.length < 6) {
+        return true;
+      }
+      return false;
+    }
+  </script>
+</body>
+
+</html>-->
