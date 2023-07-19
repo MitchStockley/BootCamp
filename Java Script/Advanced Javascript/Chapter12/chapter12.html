@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 12.9 (JSON)</title>
+</head>
+
+<body>
+    <script>
+        let list = [
+             
+                {
+                    "sport": "football",
+                    "players": 11
+                },
+                {
+                    "sport": "rugby",
+                    "players": 15
+                }
+            
+            ];
+
+
+        let stringList = JSON.stringify(list);
+        console.log(stringList);
+        let objectList = JSON.parse(stringList);
+        objectList.forEach(e => console.log(e.sport, e.players));
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+<!-- <!doctype html>
+<html>
+
+<head>
+    <title>JavaScript Course</title>
+</head>
+
+<body>
+    <div class="output"></div>
+    <input type="text" placeholder="Enter Email">
+    <button>Check</button>
+    <script>
+        let output = document.querySelector(".output");
+        let email = document.querySelector("input");
+        let button = document.querySelector("button");
+        button.addEventListener("click", validateEmail);
+
+        function validateEmail(e) {
+            userEmail = email.value;
+            let emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
+
+            if (userEmail.match(emailPattern)) {
+                output.textContent = "valid Email";
+                output.style.color = "green";
+            } else {
+                output.textContent = "Invalid Email";
+                output.style.color = "red";
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="chapter12.js"></script>
+</body>
+</html> -->
+
+
+
+<!-- <!doctype html>
+<html>
+
+<head>
+    <title>Complete JavaScript Course</title>
+</head>
+
+<body>
+    <div id="output">Complete JavaScript Course</div>
+    Search for:
+    <input id="sText" type="text">
+    <br> Replace with:
+    <input id="rText" type="text">
+    <br>
+    <button>Replace</button>
+    <script>
+        const output = document.getElementById("output");
+        const findValue = document.getElementById("sText");
+        const replaceValue = document.getElementById("rText");
+        document.querySelector("button").addEventListener("click", lookUp);
+        function lookUp() {
+            const s = output.textContent;
+            const rt = replaceValue.value;
+            const re = new RegExp(findValue.value, "gi");
+            if (s.match(re)) {
+                let newValue = s.replace(re, rt);
+                output.textContent = newValue;
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function test(a, b, c) {
+            console.log("first:", a, arguments[0]);
+            console.log("second:", b, arguments[1]);
+            console.log("third:", c, arguments[2]);
+        }
+        test("fun", "js", "secrets");
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 12.3</title>
+</head>
+
+<body>
+    <script>
+        console.log("Last argument", returnLastArg(1, 200, 566, 9999));
+        function returnLastArg() {
+            let lastOne;
+
+            for (let el of arguments) {
+                console.log(el);
+                lastOne = el;
+            }
+            return lastOne;
+        }
+
+
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // x = 5;
+        // console.log(x);
+        // var x;
+        //"use strict";
+        function sayHi() {
+            greeting = "Hello!";
+            console.log(greeting);
+        }
+        sayHi();
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        try {
+            somethingVeryDangerous();
+        } catch (e) {
+            if (e instanceof TypeError) {
+                // deal with TypeError exceptions
+                console.log("Type error")
+            } else if (e instanceof RangeError) {
+                // deal with RangeError exceptions
+                console.log("Range error")
+            } else if (e instanceof EvalError) {
+                // deal with EvalError exceptions
+                console.log("Eval error")
+            } else {
+                //deal with all other exceptions
+                throw e; //rethrow
+            }
+        }
+        try {
+            trySomething();
+        } catch (e) {
+            console.log("Oh oh");
+        } finally {
+            console.log("Error or no error, I will be logged!");
+        }
+
+        function somethingVeryDangerous() {
+            throw RangeError();
+        }
+    </script>
+
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 12.5</title>
+</head>
+
+<body>
+    <script>
+        try {
+            test(100);
+            test("h");
+        } catch (e) {
+
+            console.log(e);
+        }
+
+        function test(val) {
+            if (isNaN(val)) {
+                throw `${val} is not a number`;
+            } else {
+                console.log("Got a number " + val);
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+
+<body>
+    <div id="stored"></div>
+    <script>
+         let message = "Hello storage!";
+         localStorage.setItem("example3", message);
+        if (localStorage.getItem("example3")) {
+            document.getElementById("stored").innerHTML =
+                localStorage.getItem("example3");
+        }
+        //localStorage.removeItem("example");
+        // let message = "Hello storage!";
+        //  localStorage.setItem("example", message);
+        // if (localStorage.getItem("example")) {
+        //    document.getElementById("stored").innerHTML =
+        //         localStorage.getItem("example");
+        //  }
+        console.log(localStorage.getItem(localStorage.key(0)));
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!doctype html>
+<html>
+
+<head>
+    <title>JavaScript</title>
+    <style>
+        .ready {
+            background-color: #ddd;
+            color: red;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <input placeholder="New Item" value="test item" maxlength="30">
+        <button>Add</button>
+    </div>
+    <ul class="output">
+    </ul>
+    <script>
+        //window.localStorage.clear();
+        const userTask = document.querySelector(".main input");
+        const addBtn = document.querySelector(".main button");
+        const output = document.querySelector(".output");
+        const tasks = JSON.parse(localStorage.getItem("tasklist")) || [];
+        addBtn.addEventListener("click", createListItem);
+        if (tasks.length > 0) {
+            tasks.forEach((task) => {
+                genItem(task.val, task.checked);
+            });
+        }
+        function saveTasks() {
+            localStorage.setItem("tasklist", JSON.stringify(tasks));
+        }
+        function buildTasks() {
+            tasks.length = 0;
+            const curList = output.querySelectorAll("li");
+            curList.forEach((el) => {
+                const tempTask = {
+                    val: el.textContent,
+                    checked: false
+                };
+                if (el.classList.contains("ready")) {
+                    tempTask.checked = true;
+                }
+                tasks.push(tempTask);
+            });
+            saveTasks();
+        }
+        function genItem(val, complete) {
+            const li = document.createElement("li");
+            const temp = document.createTextNode(val);
+            li.appendChild(temp);
+            output.append(li);
+            userTask.value = "";
+            if (complete) {
+                li.classList.add("ready");
+            }
+            li.addEventListener("click", (e) => {
+                li.classList.toggle("ready");
+                buildTasks();
+            });
+            return val;
+        }
+        function createListItem() {
+            const val = userTask.value;
+            if (val.length > 0) {
+                const myObj = {
+                    val: genItem(val, false),
+                    checked: false
+                };
+                tasks.push(myObj);
+                saveTasks();
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 12.8 (JSON)</title>
+</head>
+
+<body>
+    <script>
+        let list = {
+            sport: [
+            {
+                "sport": "football",
+                "players": 11
+            },
+            {
+                "sport": "rugby",
+                "players": 15
+            }
+        ]
+        }
+
+       let sportList = list.sport;
+        print();
+
+        function print() {
+            sportList.forEach(e => console.log(e.sport, e.players));
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsing JSON</title>
+</head>
+
+<body>
+    <script>
+        // let str = "{\"name\": \"Maaike\", \"age\": 30}";
+        // let obj = JSON.parse(str);
+        // console.log(obj.name, "is", obj.age);
+        // console.log(JSON.stringify(obj));
+        let dog = {
+            "name": "wiesje",
+            "breed": "dachshund"
+        };
+        let strdog = JSON.stringify(dog);
+        console.log(typeof strdog);
+        console.log(strdog);
+    </script>
+</body>
+
+</html> -->
