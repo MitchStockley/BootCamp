@@ -54,16 +54,11 @@ Output the result into the console. */
 //this game, applying the logic with an if statement. Since this project is a little more
 //difficult, here are some suggested steps:
 
-// let arr1 = ["rock","paper", "scissors"].Math.floor(Math.random() *arr1.length);
-// alert(arr1)
-// let randomNum;ber1 = Math.floor(Math.random() * arr.length);
-// let randomNumber2 = Math.floor(Math.random() * arr.length);
-
-// let userMessage = ("The results were: ", randomNumber1, randomNumber2,"You won");
 
 
 
 
+const scoreText = document.getElementById('scoreText');
 let button = document.getElementById("button");
 let buttonTxt = document.getElementById("btnClick");
 let gameButton = document.getElementById("gameButton");
@@ -75,62 +70,66 @@ button.addEventListener('click', function () {
     } else { btnClick.style.display = 'none'; }
 });
 
-gameButton.addEventListener('click', function (e) {
+// gameButton.addEventListener('click', function (e) {
 
+//     let arr = ["rock", "paper", "scissors"];
+
+//     let user = arr[Math.floor(Math.random() * arr.length)];
+//     let bot = arr[Math.floor(Math.random() * arr.length)];
+
+
+
+//     if (user === "rock" && bot === "scissors") {
+
+//         resultText.textContent = `${user} vs ${bot}. You won!`;
+//     } else if (user === "paper" && bot === "rock") {
+//         resultText.textContent = `${user} vs ${bot}. You won!`;
+
+//     } else if (user === "scissors" && bot === "paper") {
+//         resultText.textContent = `${user} vs ${bot}. You won!`;
+
+//     } else if (user === bot) {
+//         resultText.textContent = `${user} vs ${bot}. It's a tie!`;
+
+//     } else if (user === "rock" && bot === "paper") {
+//         resultText.textContent = `${user} vs ${bot}. You lost!`;
+
+//     } else if (user === "paper" && bot === "scissors") {
+//         resultText.textContent = `${user} vs ${bot}. You lost!`;
+
+//     } else if (user === "scissors" && bot === "rock") {
+//         resultText.textContent = `${user} vs ${bot}. You lost!`;
+
+
+//     }
+// });
+let userScore = 0;
+
+gameButton.addEventListener('click', function (e) {
     let arr = ["rock", "paper", "scissors"];
     let user = arr[Math.floor(Math.random() * arr.length)];
     let bot = arr[Math.floor(Math.random() * arr.length)];
 
-
-    if (user === "rock" && bot === "scissors") {
-        // alert(user +" " + bot + "you won!");
-        // alert("You won");
+    if (user === "rock" && bot === "scissors" || user === "paper" && bot === "rock" || user === "scissors" && bot === "paper") {
         resultText.textContent = `${user} vs ${bot}. You won!`;
-    } else if (user === "paper" && bot === "rock") {
-        resultText.textContent = `${user} vs ${bot}. You won!`;
-        //alert(user +" " + bot + "you won!");
-        //alert("You won");
-    } else if (user === "scissors" && bot === "paper") {
-        resultText.textContent = `${user} vs ${bot}. You won!`;
-        // alert(user +" " + bot + "you won!");
-        //alert("You won");
+        userScore += 50; // Add 50 points for winning
     } else if (user === bot) {
         resultText.textContent = `${user} vs ${bot}. It's a tie!`;
-        // alert(user +" " + bot + "Its a tie!");
-        // alert("Its a tie");
-    } else if (user === "rock" && bot === "paper") {
-        resultText.textContent = `${user} vs ${bot}. You lost!`;
-        //alert(user +" " + bot + "you lost!");
-        //alert("You lost");
-    } else if (user === "paper" && bot === "scissors") {
-        resultText.textContent = `${user} vs ${bot}. You lost!`;
-        //alert(user +" " + bot + "you lost!");
-        //alert("You lost");
-    } else if (user === "scissors" && bot === "rock") {
-        resultText.textContent = `${user} vs ${bot}. You lost!`;
-        //alert(user +" " + bot + "you lost!");
-        //alert("You lost");
-
-    } 
-});
-
-var isImagesVisible = false; // A flag to keep track of image visibility
-
-document.getElementById("showImagesBtn").addEventListener("click", function() {
-    var images = document.querySelectorAll(".images img");
-    if (isImagesVisible) {
-        images.forEach(function(image) {
-            image.style.display = "none"; // Hide the images when the button is clicked again
-        });
-        isImagesVisible = false;
-        this.innerText = "Show Images"; // Update the button text
     } else {
-        images.forEach(function(image) {
-            image.style.display = "inline"; // Show the images when the button is clicked
-        });
-        isImagesVisible = true;
-        this.innerText = "Hide Images"; // Update the button text
+        resultText.textContent = `${user} vs ${bot}. You lost!`;
+        userScore -= 50; // Deduct 50 points for losing
+    }
+
+    // Display the updated score
+    scoreText.textContent = `Your score: ${userScore}`;
+
+    // Reset the score to 500 if it goes below zero
+    if (userScore < 0) {
+        userScore = 0;
     }
 });
+
+
+
 
 
