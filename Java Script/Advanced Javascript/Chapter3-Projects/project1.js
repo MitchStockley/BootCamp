@@ -1,30 +1,31 @@
-//Manipulating an array - Project 1
+// //Manipulating an array - Project 1
 
-const theList = ['Laurence', 'Svekis', true, 35, null, undefined, { test: 'one', score: 55 }, ['one', 'two']];
+// const theList = ['Laurence', 'Svekis', true, 35, null, undefined, { test: 'one', score: 55 }, ['one', 'two']];
 
-// Remove the first item and the last item
-theList.shift();
-theList.pop();
+// // Remove the first item and the last item
+// theList.shift();
+// theList.pop();
 
-// Add "FIRST" to the start of the array
-theList.unshift("FIRST");
+// // Add "FIRST" to the start of the array
+// theList.unshift("FIRST");
 
-// Assign "hello World" to the fourth item value (index 3)
-theList[3] = "hello World";
+// // Assign "hello World" to the fourth item value (index 3)
+// theList[3] = "hello World";
 
-// Assign "MIDDLE" to the third index value (index 2)
-theList[2] = "MIDDLE";
+// // Assign "MIDDLE" to the third index value (index 2)
+// theList[2] = "MIDDLE";
 
-// Add "LAST" to the last position in the array
-theList.push("LAST");
+// // Add "LAST" to the last position in the array
+// theList.push("LAST");
 
-// Output the final array to the console
-console.log(theList);
+// // Output the final array to the console
+// console.log(theList);
 
 
 //Company product catalog - Project 2
 
-let storeItems = [];
+let storeItems = []; //Create an array to hold an inventory of store items.
+//Create three items//each having the properties of name, model, cost, and quantity
 
 item1 = {
     name: 'iPhone',
@@ -46,8 +47,8 @@ item3 = {
     quantity: 150
 }
 
- storeItems.push(item1, item2, item3);
+ storeItems.push(item1, item2, item3); //Add all three objects to the main array using an array method
  console.log(storeItems);
 
- console.log(storeItems[2].quantity);
+ console.log(storeItems[2].quantity); // Access the quantity element of your third item,
  
