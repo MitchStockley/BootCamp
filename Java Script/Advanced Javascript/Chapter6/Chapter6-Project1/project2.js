@@ -1,17 +1,3 @@
-// function getRecursive(nr) {
-//     console.log(nr);
-
-//     if (nr < 10) {
-//         getRecursive(++nr);
-//     }
-
-
-// }
-
-// getRecursive(7);
-
-
-
 
 
 // Set timeout order
@@ -20,9 +6,6 @@
 // invokes the first two functions.
 // Create a fourth function that outputs the word four to the console and also use
 // setTimeout() to invoke the first function immediately and then the third function.
-
-
-
 
 
 let start = () => console.log("one");
