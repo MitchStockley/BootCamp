@@ -87,7 +87,7 @@ function validation(e) {
                 error = true;
             }
             if (tempName === "email") {
-                let exp = /([A-Za-z0-9._-]+@[A-Za-z0-9._-]+\.[A - Za - z0 - 9] +) \w + /;
+                let exp = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
     let result = exp.test(el.value);
     if (!result) {
         addError(el, "Invalid Email", tempName);

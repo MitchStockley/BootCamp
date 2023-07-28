@@ -23,7 +23,7 @@ class menuItems {
     }
 }
 
-let val1 = new menuItems(2, 5); //objects with different combos of menu selections //i.e they ordered 2 offer1s and 5 offer 2s
+let val1 = new menuItems(2, 5); //objects with different combos of menu selections //i.e they ordered 2 offer 1s and 5 offer 2s
 let val2 = new menuItems(1, 3); //objects with different combos of menu selections
 let val3 = new menuItems(5, 6); //objects with different conmos of menu selections
 
