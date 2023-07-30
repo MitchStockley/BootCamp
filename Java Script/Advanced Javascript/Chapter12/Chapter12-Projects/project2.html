@@ -4,6 +4,8 @@
 <head>
     <title>JavaScript Course</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
         .hide {
             display: none;
         }
@@ -16,25 +18,120 @@
         }
 
         input {
-            border-color: #ddd;
-            width: 400px;
+            box-shadow: 4px 4px 2px #00c5d7, -4px -4px 2px purple;
+            padding: 10px;
+            padding-left: 20px;
+            height: 50px;
+            font-size: 14px;
+            border-radius: 50px;
+
+
+        }
+
+        .input {
+            text-align: left;
+            margin-top: 30px;
+
+        }
+
+        label,
+        input,
+        button {
             display: block;
-            font-size: 1.5em;
+            width: 100%;
+            padding: 0;
+            border: 1px solid;
+            outline: none;
+            box-sizing: border-box;
+           
+
+
+
+
+        }
+
+        label {
+            margin-bottom: 4px;
+        }
+
+        label:nth-of-type(2) {
+            margin-top: 12px;
+        }
+
+        input::placeholder {
+            color: gray;
+        }
+
+        form {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            border-radius: 20px;
+            padding: 40px;
+            box-sizing: border-box;
+            background: white;
+            box-shadow: 14px 14px 20px #00c5d7, -14px -14px 20px purple;
+
+            text-align: left;
+
+
+        }
+
+
+
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            place-items: center;
+            overflow: hidden;
+            font-family: poppins;
+        }
+
+        .custom-submit {
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            width: 150px;
+            margin-left: 55px;
+           box-shadow: none;
+            background: radial-gradient(circle farthest-corner at 10% 20%, rgba(255, 94, 247, 1), rgba(2, 245, 255, 1)100.2%);
+
+
+
+        }
+
+        .custom-image {
+            width: 330px;
+            margin-left: -30px;
+            border-radius: 50px;
+            margin-top: -30px;
+            margin-bottom: 24px;
+
         }
     </style>
 </head>
 
 <body>
-    <form name="myform"> Email :
+    <form name="myform">
+        <img src="image.jpg" class="custom-image">
+        Email :
         <input type="text" name="email"> <span class="error hide"></span>
-            <br> Password :
-<input type="password" name="password"> <span class="error
+        <br> Password :
+        <input type="password" name="password"> <span class="error
 hide"></span>
-<br> User Name :
-<input type="text" name="userName"> <span class="error hide"></span>
-<br>
-<input type="submit" value="Sign Up"> </form>
-<script src="project2.js"></script>
+        <br> User Name :
+        <input type="text" name="userName"> <span class="error hide"></span>
+        <br>
+        <input type="submit" value="Sign Up" class="custom-submit">
+    </form>
+    <script src="project2.js"></script>
 </body>
+
 </html>
-         
