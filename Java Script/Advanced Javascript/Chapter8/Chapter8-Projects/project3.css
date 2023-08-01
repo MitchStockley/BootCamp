@@ -1,0 +1,69 @@
+.container {
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+
+    width: 800px;
+    border-radius: 25px;
+
+    box-sizing: border-box;
+    box-shadow: pink;
+    animation: alternate-reverse;
+    background-color: black;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    border:solid gold;
+}
+
+li {
+    display: inline-block;
+    font-size: 1.5em;
+    list-style-type: none;
+    padding: 1em;
+    text-transform: uppercase;
+}
+
+body {
+    align-items: center;
+    background-color: black;
+    display: flex;
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        "Helvetica Neue",
+        sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+@keyframes example {
+    from {
+        color: white;
+        border:solid gold;
+       
+     
+    }
+
+    to {
+        color: gold;
+        border: solid white;
+        
+       
+    }
+}
+
+
+ 
+    
+
+
+

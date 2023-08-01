@@ -35,5 +35,5 @@ function otherChecker(pass) {
 }
 
 // Call `otherChecker` function with "java" and "1234" as passwords for testing.
-otherChecker("java"); // Will log "Approved" and the token object with the status as `true`.
+otherChecker("javas"); // Will log "Approved" and the token object with the status as `true`.
 otherChecker("software"); // Will log "Reject" and the value object with the status as `false`.

@@ -3,7 +3,7 @@
 // will show the total milliseconds, days, hours, minutes, and seconds remaining until a
 // target date is reached
 
-
+let p = document.querySelector("demo");
 let endDate = "25 dec 2023";
 
 function countDown() {
@@ -12,9 +12,13 @@ function countDown() {
     const hrs = Math.floor((total / (1000 * 60 * 60)) % 24);
     const mins = Math.floor((total / 1000 / 60) % 60);
     const secs = Math.floor((total / 1000) % 60);
+    let d = document.getElementById("days").innerHTML = days;
+    let h = document.getElementById("hours").innerHTML = hrs;
+    let m = document.getElementById("minutes").innerHTML = mins;
+    let s = document.getElementById("seconds").innerHTML = secs;
 
     return {
-        days, hrs, mins, secs 
+        days, hrs, mins, secs
     }
 }
 
@@ -29,10 +33,15 @@ function update() {
     for (const property in temp) {
         output += (`${property}: ${temp[property]} `);
 
+
+
     }
     console.log(output)
     setTimeout(update, 1000)
 }
 
 update();
+
+
+
 
