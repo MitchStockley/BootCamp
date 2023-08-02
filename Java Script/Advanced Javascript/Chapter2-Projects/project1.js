@@ -1,8 +1,8 @@
 //Miles-to-kilometers converter
-// let miles = 130;
-// let km = miles * 1.60934;
+let miles = 130;
+let km = miles * 1.60934;
 
-// console.log("The distance of", miles , "kms", "is equal to", km, "miles");
+console.log("The distance of", miles , "kms", "is equal to", km, "miles");
 
 
 //BMI Calculator Project
