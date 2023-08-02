@@ -1,9 +1,9 @@
 // // The document.getElementById('carBrand').value gets the user input. These values are then passed to the car object and stored in local storage using the setItem method.
 
 function store(){ //stores items in the localStorage
-    var brand = document.getElementById('carBrand').value;
-    var price = document.getElementById('carPrice').value;
-    var key = document.getElementById('key').value; //gets the key from the user
+   let brand = document.getElementById('carBrand').value;
+   let price = document.getElementById('carPrice').value;
+   let key = document.getElementById('key').value; //gets the key from the user
 
     const car = {
         brand: brand,
@@ -16,18 +16,18 @@ function store(){ //stores items in the localStorage
 //the retrieveButton will invoke the retrieveRecords function when clicked. This method fetches items from the localStorage using the getItem function.
 function retrieveRecords(){ //retrieves items in the localStorage
     console.log("retrieve records");
-     var key = document.getElementById('retrieveKey').value;
-    var records = window.localStorage.getItem(key);
-    var paragraph = document.createElement("p");
-    var infor = document.createTextNode(records); //helps create the text that will be displayed to the user.
+     let key = document.getElementById('retrieveKey').value;
+    let records = window.localStorage.getItem(key);
+    let paragraph = document.createElement("p");
+    let infor = document.createTextNode(records); //helps create the text that will be displayed to the user.
     paragraph.appendChild(infor);
-    var element = document.getElementById("retrieve");
+    let element = document.getElementById("retrieve");
     element.appendChild(paragraph);
 }
 
 // This method will delete a value from the local storage using the removeItem function.
 function removeItem(){  //deletes item from localStorage
-    var key = document.getElementById('removeKey').value;
+    let key = document.getElementById('removeKey').value;
     localStorage.removeItem(key)
     console.log("remove items");
 }
