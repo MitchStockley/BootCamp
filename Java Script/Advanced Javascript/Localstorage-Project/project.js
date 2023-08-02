@@ -1,4 +1,4 @@
-// // The document.getElementById('carBrand').value gets the user input. These values are then passed to the car object and stored in local storage using the setItem method.
+//  The document.getElementById('carBrand').value //gets the user input. These values are then passed to the car object and stored in local storage using the setItem method.
 
 function store(){ //stores items in the localStorage
    let brand = document.getElementById('carBrand').value;
