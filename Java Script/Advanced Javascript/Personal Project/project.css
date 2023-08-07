@@ -228,7 +228,8 @@ img {
     font-size: 0.9rem;
 }
 
-.social-link:hover, .social-link:focus {
+.social-link:hover,
+.social-link:focus {
     background: #ddd;
     text-decoration: none;
     color: #555;
@@ -236,4 +237,22 @@ img {
 
 .progress {
     height: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    font-style: italic;
+}
+
+input {
+    border-color: #ddd;
+    width: 400px;
+    display: block;
+    font-size: 1.5em;
 }
