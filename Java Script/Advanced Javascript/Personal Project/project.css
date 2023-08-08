@@ -1,12 +1,13 @@
 .dropdown {
 
-    display: inline-block;
-    background: rgb(75, 183, 230);
-    background: radial-gradient(circle, rgba(75, 183, 230, 1) 13%, rgba(166, 33, 33, 1) 77%);
+    display: flex;
+    background-color: #a62121;
+
     width: 100%;
     position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
+
 
 }
 
@@ -18,7 +19,7 @@
     border: none;
     cursor: pointer;
 
-    background: rgba(166, 33, 33, 1) 77%;
+    background: #a62121;
 }
 
 .dropdown-content {
@@ -75,6 +76,8 @@ body {
     background-color: var(--dark-color-lighten);
     font-family: "Montserrat", sans-serif;
     background: black;
+    color: #f1f1f1;
+
 }
 
 button {
@@ -99,28 +102,57 @@ img {
 
 /*===== CARD =====*/
 .container {
-    height: 100%;
-    width: 1150px;
 
-    margin: auto;
+    /* display: flex;
+   
+      height: 40%;
+      align-items: center;
+      width: 100%; */
     display: flex;
+    /* flex-direction: column; */
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    /* min-height: 100vh; */
+
+
+
 
 
 }
 
+.contair {
+    display: flex;
+    /*   border:1px solid red; */
+    height: 30%;
+    align-items: center;
+    width: 100%;
+    font-size: x-large;
+    margin-bottom: 60px;
+  
+   
+   
+    
+}
+
+
 .card {
     position: relative;
-    padding: 1rem;
+    /* padding: 1rem; */
 
-    width: 450px;
+
+    /* width: 350px; */
     height: 450px;
     box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
     border-radius: 0.9rem;
     background-color: var(--red-card);
     color: var(--text);
     cursor: pointer;
+    width: 300px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+
+
 
 
 }
@@ -129,6 +161,7 @@ img {
     background: var(--blue-card);
     margin-left: 20px;
     margin-right: 20px;
+
 }
 
 .product-image {
@@ -261,4 +294,54 @@ input {
     width: 400px;
     display: block;
     font-size: 1.5em;
+}
+
+
+
+svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    width: 960px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1) {
+    stroke: #a62121;
+    animation-delay: -1;
+}
+
+.text-copy:nth-child(2) {
+    stroke: #a62121;
+    animation-delay: -2s;
+}
+
+.text-copy:nth-child(3) {
+    stroke: #4bb7e6;
+    animation-delay: -3s;
+}
+
+.text-copy:nth-child(4) {
+    stroke: #4bb7e6;
+    animation-delay: -4s;
+}
+
+.text-copy:nth-child(5) {
+    stroke: #4bb7e6;
+    animation-delay: -5s;
+}
+
+@keyframes stroke-offset {
+    100% {
+        stroke-dashoffset: -35%;
+    }
 }
