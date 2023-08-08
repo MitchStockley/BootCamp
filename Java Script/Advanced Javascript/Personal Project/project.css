@@ -1,18 +1,24 @@
 .dropdown {
-    position: relative;
+
     display: inline-block;
-    background: #4CAF50;
+    background: rgb(75, 183, 230);
+    background: radial-gradient(circle, rgba(75, 183, 230, 1) 13%, rgba(166, 33, 33, 1) 77%);
     width: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 
 }
 
 .dropbtn {
-    background-color: #4CAF50;
+
     color: white;
     padding: 12px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+
+    background: rgba(166, 33, 33, 1) 77%;
 }
 
 .dropdown-content {
@@ -68,7 +74,7 @@ body {
     width: 100vw;
     background-color: var(--dark-color-lighten);
     font-family: "Montserrat", sans-serif;
-    background: #fafafa;
+    background: black;
 }
 
 button {
