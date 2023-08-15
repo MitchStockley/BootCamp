@@ -12785,7 +12785,7 @@ header.masthead .bg-circle-4 {
   border: 1.5px solid orange;
   border-radius: 7px;
   width: 50%;
-  font-size:large;
+  font-size: large;
   background-color: orange;
   text-decoration: none;
 
@@ -12808,8 +12808,8 @@ header.masthead .bg-circle-4 {
   background-color: orange;
   text-decoration: none;
   margin-left: 5px;
-  
-  
+
+
 }
 
 .pink-btn:hover {
@@ -12818,3 +12818,23 @@ header.masthead .bg-circle-4 {
   box-shadow: 0px 0px 5px yellow, 0px 0px 25px orange, 0px 0px 50px orangered, 0px 0px 100px var(--bs-orange);
   -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
+
+.aboutUs {
+
+
+  text-align: center;
+
+  /* font-family: "Catamaran", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+
+
+
+}
+
+#au {}
+
+
+      
+      
+  
+  
+
