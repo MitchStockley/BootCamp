@@ -1,6 +1,8 @@
 "use strict";
+//The application won’t start until I create my local modules,
+//exporting an object that maps file types to their header values for use in my responses
 
-module.exports = {
+module.exports = { //Export content type mapping object.
   html: {
     "Content-Type": "text/html"
   },
