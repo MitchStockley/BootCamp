@@ -9,6 +9,8 @@ const express = require("express"),
   mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
 
+mongoose.Promise = global.Promise;
+
 mongoose.connect(
   "mongodb://localhost:27017/recipe_db",
   { useNewUrlParser: true }
@@ -45,13 +47,15 @@ app.get("/name", homeController.respondWithName);
 app.get("/items/:vegetable", homeController.sendReqParam);
 
 app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
-  res.render("subscribers", { subscribers: req.data });
+  res.render("subscribers", { subscribers: req.data }); //makes a call to render a view called subscribers.ejs and passes the subscribers from the data base to that view in a var called subscribers
 });
 
 app.get("/", homeController.index);
 app.get("/courses", homeController.showCourses);
 
+//adding get route for the subscription page
 app.get("/contact", subscribersController.getSubscriptionPage);
+//adding a post route to handle subscription data
 app.post("/subscribe", subscribersController.saveSubscriber);
 
 app.use(errorController.logErrors);
