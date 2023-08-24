@@ -1,32 +1,31 @@
-
-"use strict";
+"use strict"
 
 const express = require("express"),
   app = express(),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
+  subscribersController = require("./controllers/subscribersController"),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
 
 mongoose.connect(
-  "mongodb://localhost:27017/recipe_db", //set up connection to database
+  "mongodb://localhost:27017/recipe_db",
   { useNewUrlParser: true }
 );
 mongoose.set("useCreateIndex", true);
-const db = mongoose.connection; //Asign the database to the db variable
+const db = mongoose.connection;
 
-db.once("open", () => { //Log a msg when the application connects to the database
+db.once("open", () => {
   console.log("Successfully connected to MongoDB using Mongoose!");
 });
 
-//Listing 14.6 Example query to run in main.js
 var myQuery = Subscriber.findOne({
   name: "Jon Wexler"
 }).where("email", /wexler/);
 
 myQuery.exec((error, data) => {
-  if (data) console.log(data.name); //run a quary with a callback function to handle errors and data
+  if (data) console.log(data.name);
 });
 
 app.set("port", process.env.PORT || 3000);
@@ -45,11 +44,15 @@ app.use(homeController.logRequestPaths);
 app.get("/name", homeController.respondWithName);
 app.get("/items/:vegetable", homeController.sendReqParam);
 
-app.post("/", (req, res) => {
-  console.log(req.body);
-  console.log(req.query);
-  res.send("POST Successful!");
+app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
+  res.render("subscribers", { subscribers: req.data });
 });
+
+app.get("/", homeController.index);
+app.get("/courses", homeController.showCourses);
+
+app.get("/contact", subscribersController.getSubscriptionPage);
+app.post("/subscribe", subscribersController.saveSubscriber);
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

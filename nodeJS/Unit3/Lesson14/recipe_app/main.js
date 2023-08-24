@@ -8,6 +8,7 @@ const express = require("express"),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
+ 
 
 mongoose.connect(
   "mongodb://localhost:27017/recipe_db", //set up connection to database
@@ -44,6 +45,7 @@ app.use(homeController.logRequestPaths);
 
 app.get("/name", homeController.respondWithName);
 app.get("/items/:vegetable", homeController.sendReqParam);
+
 
 app.post("/", (req, res) => {
   console.log(req.body);
