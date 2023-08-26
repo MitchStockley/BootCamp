@@ -1,6 +1,7 @@
 const mongoose = require("mongoose"),
     Subscriber = require("./models/subscriber"),
     Course = require("./models/course");
+User = require("./models/user")
 var testCourse,
     testSubscriber;
 mongoose.connect(
@@ -56,7 +57,20 @@ Subscriber.remove({})
     .then(() => {
         return Subscriber.find({
             courses: mongoose.Types.ObjectId(
- testCourse._id)
+                testCourse._id)
         });
     })
     .then(subscriber => console.log(subscriber));
+
+//Listing 18.3 Creating a new user in REPL in terminal
+var testUser;
+User.create({
+    name: {
+        first: "Jon",
+        last: "Wexler"
+    },
+    email: "jon@jonwexler.com",
+    password: "pass123"
+})
+    .then(user => testUser = user)
+    .catch(error => console.log(error.message));
