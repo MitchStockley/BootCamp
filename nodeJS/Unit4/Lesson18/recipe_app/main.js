@@ -1,14 +1,15 @@
-"use strict"
+"use strict";
 
 const express = require("express"),
   app = express(),
+  layouts = require("express-ejs-layouts"),
+  mongoose = require("mongoose"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   subscribersController = require("./controllers/subscribersController"),
-  layouts = require("express-ejs-layouts"),
-  mongoose = require("mongoose"),
+  usersController = require("./controllers/usersController"),
+  coursesController = require("./controllers/coursesController"),
   Subscriber = require("./models/subscriber");
-
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
@@ -16,12 +17,12 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 mongoose.set("useCreateIndex", true);
+
 const db = mongoose.connection;
 
 db.once("open", () => {
   console.log("Successfully connected to MongoDB using Mongoose!");
 });
-
 
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
@@ -36,19 +37,13 @@ app.use(
 app.use(express.json());
 app.use(homeController.logRequestPaths);
 
-app.get("/name", homeController.respondWithName);
-app.get("/items/:vegetable", homeController.sendReqParam);
-
-app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
-  res.render("subscribers", { subscribers: req.data }); //makes a call to render a view called subscribers.ejs and passes the subscribers from the data base to that view in a var called subscribers
-});
-
 app.get("/", homeController.index);
-app.get("/courses", homeController.showCourses);
+app.get("/contact", homeController.getSubscriptionPage);
+//create the index route
+app.get("/users", usersController.index, usersController.indexView);
+app.get("/subscribers", subscribersController.index, subscribersController.indexView);
+app.get("/courses", coursesController.index, coursesController.indexView);
 
-//adding get route for the subscription page
-app.get("/contact", subscribersController.getSubscriptionPage);
-//adding a post route to handle subscription data
 app.post("/subscribe", subscribersController.saveSubscriber);
 
 app.use(errorController.logErrors);

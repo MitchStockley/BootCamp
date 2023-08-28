@@ -1,47 +1,47 @@
-
-
-//listing 18.1: Creating a user medel
+"use strict";
+//creating a user model
 const mongoose = require("mongoose"),
-    { schema } = mongoose,
+  { Schema } = mongoose,
 
-    userSchema = new Schema({ //create user Schema
-        name: {
-            first: { //adding first and last name properties
-                type: string,
-                trim: true
-            },
-
-            last: {
-                type: string,
-                trim: true
-            }
+  userSchema = new Schema( //create the user schema
+    {
+      name: { //adding first and last name properties
+        first: {
+          type: String,
+          trim: true
         },
-        email: {
-            type: string,
-            required: true,
-            lowercase: true,
-            unique: true
-        },
-
-        zipCode: {
-            type: Number,
-            min: [1000, "Zip code too short"],
-            max: 99999
-        },
-
-        password: { //add password property
-            type: string,
-            require: true
-        },
-        courses: [{ type: Schema.Types.ObjectId, ref: "Courses" }],
-        subscribedAccount: { type: Schema.Types.ObjectId, ref: "Subscriber" } //add a subscribed account to connect users to subscribers
-    }, {
-        timestamps: true //add a timestamps properties to record createdAt and  
-    });
-    
-//Listing 18.2 Adding a virtual attribute to the user model in user.js
-userSchema.virtual("fullName")
-    .get(function () {
-        return `${this.name.first} ${this.name.last}`;
-    });
+        last: {
+          type: String,
+          trim: true
+        }
+      },
+      email: {
+        type: String,
+        required: true,
+        lowercase: true,
+        unique: true
+      },
+      zipCode: {
+        type: Number,
+        min: [1000, "Zip code too short"],
+        max: 99999
+      },
+      password: {
+        type: String,
+        required: true
+      },
+      courses: [{ type: Schema.Types.ObjectId, ref: "Course" }], //adding a courses property so connect users to courses
+      subscribedAccount: { //add a subscribedAcount to connect users to subscribers
+        type: Schema.Types.ObjectId,
+        ref: "Subscriber"
+      }
+    },
+    {
+      timestamps: true //tracks created at time etc
+    }
+  );
+//adding a virtual attribute to get the users full name. 
+userSchema.virtual("fullName").get(function() {
+  return `${this.name.first} ${this.name.last}`;
+});
 module.exports = mongoose.model("User", userSchema);

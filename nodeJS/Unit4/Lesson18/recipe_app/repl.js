@@ -1,20 +1,19 @@
 const mongoose = require("mongoose"),
     Subscriber = require("./models/subscriber"),
     Course = require("./models/course");
-User = require("./models/user")
-var testCourse,
-    testSubscriber;
+var testCourse, testSubscriber;
 mongoose.connect(
     "mongodb://localhost:27017/recipe_db",
     { useNewUrlParser: true }
 );
+mongoose.set("useCreateIndex", true);
 mongoose.Promise = global.Promise;
 Subscriber.remove({})
-    .then((items) => console.log(`Removed ${items.n} records!`))
+    .then(items => console.log(`Removed ${items.n} records!`))
     .then(() => {
         return Course.remove({});
     })
-    .then((items) => console.log(`Removed ${items.n} records!`))
+    .then(items => console.log(`Removed ${items.n} records!`))
     .then(() => {
         return Subscriber.create({
             name: "Jon",
@@ -31,7 +30,7 @@ Subscriber.remove({})
         });
     })
     .then(subscriber => {
-        testSubscriber = subscriber
+        testSubscriber = subscriber;
         console.log(`Found one subscriber: ${subscriber.getInfo()}`);
     })
     .then(() => {
@@ -56,21 +55,7 @@ Subscriber.remove({})
     .then(subscriber => console.log(subscriber))
     .then(() => {
         return Subscriber.find({
-            courses: mongoose.Types.ObjectId(
-                testCourse._id)
+            courses: mongoose.Types.ObjectId(testCourse._id)
         });
     })
     .then(subscriber => console.log(subscriber));
-
-//Listing 18.3 Creating a new user in REPL in terminal
-var testUser;
-User.create({
-    name: {
-        first: "Jon",
-        last: "Wexler"
-    },
-    email: "jon@jonwexler.com",
-    password: "pass123"
-})
-    .then(user => testUser = user)
-    .catch(error => console.log(error.message));
