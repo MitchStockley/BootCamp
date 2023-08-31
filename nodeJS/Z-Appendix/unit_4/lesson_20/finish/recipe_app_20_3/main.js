@@ -38,10 +38,12 @@ router.use(
   })
 );
 
+//Listing 20.3 Adding method-override to your application in main.js
+// A postr request that you want processed as a put request.
 router.use(
   methodOverride("_method", {
     methods: ["POST", "GET"]
-  })
+  }) //configures the application router to use methodOveride as middleware
 );
 
 router.use(express.json());
@@ -53,7 +55,9 @@ router.get("/contact", homeController.getSubscriptionPage);
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
 router.post("/users/create", usersController.create, usersController.redirectView);
-router.get("/users/:id/edit", usersController.edit);
+//Adding edit and update routes to main.js
+router.get("/users/:id/edit", usersController.edit); //route to handle viewing
+//process data from the deit form and display the user show page
 router.put("/users/:id/update", usersController.update, usersController.redirectView);
 router.delete("/users/:id/delete", usersController.delete, usersController.redirectView);
 router.get("/users/:id", usersController.show, usersController.showView);

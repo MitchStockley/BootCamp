@@ -61,11 +61,13 @@ module.exports = {
   showView: (req, res) => {
     res.render("users/show");
   },
+
+  //Listing 20.6 Adding edit and update actions to usersController.js
   edit: (req, res, next) => {
     let userId = req.params.id;
-    User.findById(userId)
+    User.findById(userId) //use findById to locate a user in the database by their ID
       .then(user => {
-        res.render("users/edit", {
+        res.render("users/edit", { //render the user edit page for a specific user in the database
           user: user
         });
       })
@@ -74,9 +76,9 @@ module.exports = {
         next(error);
       });
   },
-  update: (req, res, next) => {
+  update: (req, res, next) => { //adding update action
     let userId = req.params.id,
-      userParams = {
+      userParams = { //collects user params from request
         name: {
           first: req.body.first,
           last: req.body.last
@@ -85,12 +87,16 @@ module.exports = {
         password: req.body.password,
         zipCode: req.body.zipCode
       };
+    /* Use findByIdAndUpdate to
+locate a user by ID and
+update the document
+record in one command. */
     User.findByIdAndUpdate(userId, {
       $set: userParams
     })
       .then(user => {
         res.locals.redirect = `/users/${userId}`;
-        res.locals.user = user;
+        res.locals.user = user; //add ujser to response as a local variable and call the next middleware function
         next();
       })
       .catch(error => {
@@ -98,9 +104,10 @@ module.exports = {
         next(error);
       });
   },
+  //Listing 20.9 Adding the delete action to usersController.js
   delete: (req, res, next) => {
     let userId = req.params.id;
-    User.findByIdAndRemove(userId)
+    User.findByIdAndRemove(userId) //deleting user with the findByIdAndRemove method
       .then(() => {
         res.locals.redirect = "/users";
         next();
