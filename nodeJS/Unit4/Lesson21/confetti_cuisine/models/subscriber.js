@@ -1,9 +1,10 @@
 "use strict";
 
-//isting 21.1 Improved Subscriber schema in subscriber.js
 const mongoose = require("mongoose"),
-  { Schema } = mongoose,
-  subscriberSchema = new Schema({ //add schema properties
+  { Schema } = mongoose;
+
+var subscriberSchema = new Schema(
+  {
     name: {
       type: String,
       required: true
@@ -19,13 +20,20 @@ const mongoose = require("mongoose"),
       min: [10000, "Zip code too short"],
       max: 99999
     },
-    courses: [{ type: Schema.Types.ObjectId, ref: "Course" }] //associate muitiple courses
-  }, {
+    courses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Course"
+      }
+    ]
+  },
+  {
     timestamps: true
-  });
-subscriberSchema.methods.getInfo = function () { //add get info instance methods 
-  return `Name: ${this.name} Email: ${this.email}
- Zip Code: ${this.zipCode}`;
+  }
+);
+
+subscriberSchema.methods.getInfo = function() {
+  return `Name: ${this.name} Email: ${this.email} Zip Code: ${this.zipCode}`;
 };
 
-module.exports = mongoose.model("Subscriber", subscriberSchema); //export the subscribers model
+module.exports = mongoose.model("Subscriber", subscriberSchema);
