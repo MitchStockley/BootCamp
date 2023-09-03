@@ -121,64 +121,64 @@ module.exports = {
         next();
       });
   },
-  login: (req, res) => {
+  //Listing 23.3 Adding login and authenticate actions to usersController.js
+  login: (req, res) => { //add the login action
     res.render("users/login");
   },
+
   authenticate: (req, res, next) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({ email: req.body.email }) //quary for one user by email
       .then(user => {
-        if (user) {
-          user.passwordComparison(req.body.password).then(passwordsMatch => {
-            if (passwordsMatch) {
-              res.locals.redirect = `/users/${user._id}`;
-              req.flash("success", `${user.fullName}'s logged in successfully!`);
-              res.locals.user = user;
-            } else {
-              req.flash("error", "Failed to log in user account: Incorrect Password.");
-              res.locals.redirect = "/users/login";
-            }
-            next();
-          });
+        if (user) { //check whether a user is found
+          user.passwordComparison(req.body.password) //call password comparison method on the User model
+            .then(passwordsMatch => {
+              if (passwordsMatch) {
+                res.locals.redirect = `/users/${user._id}`;
+                req.flash("success", `${user.fullName}'s logged in
+     successfully!`);
+                res.locals.user = user;
+              } else {
+                req.flash("error", "Failed to log in user account: Incorrect Password.");
+                res.locals.redirect = "/users/login";
+              }
+              next();
+            });
         } else {
           req.flash("error", "Failed to log in user account: User account not found.");
           res.locals.redirect = "/users/login";
           next();
         }
-      })
+      }) //log errors to the console. 
       .catch(error => {
         console.log(`Error logging in user: ${error.message}`);
         next(error);
       });
   },
-  validate: (req, res, next) => {
-    req
-      .sanitizeBody("email")
-      .normalizeEmail({
-        all_lowercase: true
-      })
-      .trim();
-    req.check("email", "Email is invalid").isEmail();
-    req
-      .check("zipCode", "Zip code is invalid")
-      .notEmpty()
-      .isInt()
-      .isLength({
-        min: 5,
-        max: 5
-      })
-      .equals(req.body.zipCode);
-    req.check("password", "Password cannot be empty").notEmpty();
 
-    req.getValidationResult().then(error => {
-      if (!error.isEmpty()) {
-        let messages = error.array().map(e => e.msg);
-        req.skip = true;
-        req.flash("error", messages.join(" and "));
-        res.locals.redirect = "/users/new";
-        next();
-      } else {
-        next();
-      }
-    });
-  }
+ //Listing 23.7 Creating a validate controller in usersController.js
+
+ validate: (req,res, next) => { //add the validate function 
+  req.sanitizeBody("email").normalizeEmail({
+    all_lowercase: true
+  
+  }).trim(); //removing white spaces with the trim method
+  req.check("email", "email is valid").isEmail();
+  req.check("zipCode", "Zip code is invalid").notEmpty().isInt().isLength({
+    min:5,
+    max:5
+  }).equals(req.body.zipCode); //validate the zipCode field 
+  req.check("password", "Password cannot be empty").notEmpty(); //validate the password field
+  //collect results of previous validations
+  req.getvalidationResult().then((error) => {
+    if (!error.isEmpty()) {
+      let messages = error.array().map(e => e.msg);
+      req.skip = true;
+      req.flash("error", messages.join(" and ")); //add error msgs as flash messages
+      res.locals.redirect = "/users/new"; //set redirect path for the new view
+      next();
+    } else {
+      next(); //call the next middleware function
+    }
+  });
+ }
 };

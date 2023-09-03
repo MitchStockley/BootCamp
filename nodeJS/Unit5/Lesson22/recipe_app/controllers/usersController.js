@@ -1,18 +1,18 @@
 "use strict";
 
 //Listing 22.3 Wrapping user params in the function
-
-const getUserParams = body => {
-  return {
-    name: {
-      first: body.first,
-      last: body.last
-    },
-    email: body.email,
-    password: body.password,
-    zipCode: body.zipCode
+const User = require("../models/user"),
+  getUserParams = body => {
+    return {
+      name: {
+        first: body.first,
+        last: body.last
+      },
+      email: body.email,
+      password: body.password,
+      zipCode: body.zipCode
+    };
   };
-};
 
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
   //Listing 22.4 Adding flash messages to the create action in usersController.js
   create: (req, res, next) => {
     let userParams = getUserParams(req.body);
-    user.create(userParams)
+    User.create(userParams)
       .then(user => { //respond with a success flash message
         req.flash("success", `${user.fullName}'s account created successfully!`);
         res.locals.redirect = "/users";

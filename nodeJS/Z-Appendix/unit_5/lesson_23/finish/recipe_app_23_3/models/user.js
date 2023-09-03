@@ -65,23 +65,23 @@ userSchema.pre("save", function(next) {
   }
 });
 
+//Listing 23.4 Adding a hashing pre hook in user.js
 userSchema.pre("save", function(next) {
   let user = this;
-  bcrypt
-    .hash(user.password, 10)
-    .then(hash => {
-      user.password = hash;
-      next();
-    })
-    .catch(error => {
-      console.log(`Error in hashing password: ${error.message}`);
-      next(error);
-    });
-});
+  bcrypt.hash(user.password, 10).then(hash => { //hash the users password
+    user.password = hash;
+    next();
+  }) 
+  .catch(error => {
+    console.log(`Error in hashing password: ${error.message}`);
+    next(error);
+  });
 
-userSchema.methods.passwordComparison = function(inputPassword) {
+});
+//add a function to compare passwords
+userSchema.methods.passwordComparison = function(inputPassword){
   let user = this;
-  return bcrypt.compare(inputPassword, user.password);
+  return bcrypt.compare(inputPassword,user.password); //compare user password with the stored password
 };
 
 module.exports = mongoose.model("User", userSchema);

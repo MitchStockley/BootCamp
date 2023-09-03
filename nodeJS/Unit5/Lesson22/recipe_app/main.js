@@ -59,7 +59,8 @@ router.use(expressSession({
   resave: false,
   saveUninitialized: false
 
-})); //configure express session to use cookie parser
+})
+); //configure express session to use cookie parser
 router.use(connectFlash()); //configure to use flash as middleware
 
 //Listing 22.2 Middleware to associate connectFlash to flashes on response

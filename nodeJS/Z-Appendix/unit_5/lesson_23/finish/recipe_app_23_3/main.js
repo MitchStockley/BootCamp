@@ -74,8 +74,11 @@ router.get("/contact", homeController.getSubscriptionPage);
 
 router.get("/users", usersController.index, usersController.indexView);
 router.get("/users/new", usersController.new);
+//adding the validate middleware to the users create route in main.js
 router.post("/users/create", usersController.validate, usersController.create, usersController.redirectView);router.get("/users/login", usersController.login);
+//add route to handle get requests made to the users/login/ path
 router.get("/users/login", usersController.login);
+//route to handle post requests to the same path
 router.post("/users/login", usersController.authenticate, usersController.redirectView);
 router.get("/users/:id/edit", usersController.edit);
 router.put("/users/:id/update", usersController.update, usersController.redirectView);
