@@ -1,40 +1,55 @@
-const express = require("express");
-const path = require("path");
-const app = new express();
-const ejs = require("ejs");   //require ejs page 43
-const mongoose = require('mongoose');
+const express = require('express')
+const path = require('path');
+const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser:true});
+const app = new express()
+const ejs = require('ejs')
+app.set('view engine', 'ejs')
 
-app.set("view engine","ejs")  //tell express to use EJS as our templating engine page 43
+app.use(express.static('public'))
+app.use(express.json())
+app.use(express.urlencoded())
 
-app.use(express.static("public"));
+const BlogPost = require('./models/BlogPost.js')
 
-app.get("/", (req, res) => {
-  // res.sendFile(path.resolve(dirname, "public/pages/index.html"));
-  res.render('index');  //will look in a 'views'folder for the file index.ejs page44
-});
+mongoose.connect('mongodb://127.0.0.1/my_database',
+    { useNewUrlParser: true })
 
-app.get("/about", (req, res) => {
-  // res.sendFile(path.resolve(dirname, "public/pages/about.html"));
-  res.render('about');
-});
-app.get("/contact", (req, res) => {
-  // res.sendFile(path.resolve(dirname, "public/pages/contact.html"));
-  res.render('contact');
-});
-app.get("/post", (req, res) => {
-  // res.sendFile(path.resolve(dirname, "public/pages/post.html"));
-  res.render('post');
-});
-
-//route for create new post
-app.get('/posts/new', (req,res) => {
-  res.render('create')
+app.get('/', async (req, res) => {
+    const blogposts = await BlogPost.find({})
+    res.render('index', {
+        blogposts
+    });
 })
 
+app.get('/about', (req, res) => {
+    res.render('about');
+})
+app.get('/contact', (req, res) => {
+    res.render('contact');
+})
+
+
+app.get('/posts/new', (req, res) => {
+    res.render('create')
+})
+
+app.get('/post/:id', async (req, res) => {
+    const blogpost = await BlogPost.findById(req.params.id)
+    res.render('post', {
+        blogpost
+    })
+})
+
+app.post('/posts/store', (req, res) => {
+    BlogPost.create(req.body)
+        .then(blogpost => res.redirect('/'))
+        .catch(error => console.log(error))
+})
+
+
 app.listen(4000, () => {
-  console.log("App listening on port 4000");
-});
+    console.log('App listening on port 4000')
+})
 
-
+//pg 65
