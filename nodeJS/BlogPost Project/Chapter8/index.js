@@ -5,6 +5,17 @@ const mongoose = require('mongoose')
 const app = new express()
 const ejs = require('ejs')
 const fileUpload = require('express-fileupload')
+const customMiddleWare = (req, res, next) => {
+    console.log('custom middleware called')
+    next()
+}
+
+const validateMiddleWare = (req, res, next) => {
+    if (req.files == null || req.body.title == null) {
+        return res.redirect('/posts/new')
+    }
+    next()
+}
 
 app.set('view engine', 'ejs')
 
@@ -12,6 +23,10 @@ app.use(express.static('public'))
 app.use(express.json())
 app.use(express.urlencoded())
 app.use(fileUpload())
+app.use('/posts/store', validateMiddleWare)
+
+app.use(customMiddleWare)
+
 
 const BlogPost = require('./models/BlogPost.js')
 
@@ -47,14 +62,14 @@ app.get('/post/:id', async (req, res) => {
 app.post('/posts/store', (req, res) => {
     console.log(req.files)
     let image = req.files.image;
-    image.mv(path.resolve(__dirname, 'public/img', image.name), async (error)=> {
+    image.mv(path.resolve(__dirname, 'public/img', image.name), async (error) => {
         await BlogPost.create({
-           title:req.body.title,
-           body:req.body.body,
-           username:req.body.username,
+            title: req.body.title,
+            body: req.body.body,
+            username: req.body.username,
             image: '/img/' + image.name
         })
-    res.redirect('/')
+        res.redirect('/')
     })
 })
 
