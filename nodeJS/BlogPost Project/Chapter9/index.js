@@ -16,6 +16,7 @@ const newPostController = require('./controllers/newPost')
 const homeController = require('./controllers/home')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
+const newUserController = require('./controllers/newUser')
 
 
 app.set('view engine', 'ejs')
@@ -43,6 +44,7 @@ app.get('/posts/new', newPostController)
 app.get('/', homeController)
 app.get('/post/:id', getPostController)
 app.post('/posts/store', storePostController)
+app.get('/auth/register', newUserController)
 
 
 app.listen(4000, () => {
