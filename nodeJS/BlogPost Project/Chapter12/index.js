@@ -3,24 +3,24 @@ const mongoose = require('mongoose');
 const ejs = require('ejs');
 const fileUpload = require('express-fileupload');
 const expressSession = require('express-session');
+const flash = require('connect-flash');
+
+
 
 const newPostController = require('./controllers/newPost');
 const homeController = require('./controllers/home');
 const storePostController = require('./controllers/storePost');
-
+const storeUserController = require('./controllers/storeUser');
+const newUserController = require('./controllers/newUser');
 const getPostController = require('./controllers/getPost');
 const validateMiddleware = require("./middleware/validateMiddleware");
-const newUserController = require('./controllers/newUser');
-
-const storeUserController = require('./controllers/storeUser');
-
-
-const loginController = require('./controllers/login');
-const loginUserController = require('./controllers/loginUser');
 const authMiddleware = require('./middleware/authMiddleware');
-const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
+const loginController = require('./controllers/login');
 const logoutController = require('./controllers/logout');
-const flash = require('connect-flash');
+const loginUserController = require('./controllers/loginUser');
+const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
+
+
 
 
 
@@ -31,16 +31,22 @@ const app = new express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(fileUpload());
-app.use(expressSession({
-    secret: 'keyboard cat'
-    }));
+
 
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.use(expressSession({
+    secret: 'keyboard cat'
+    }));
+
+    app.use(flash());
+
+    global.loggedIn = null;
+
 app.use('/posts/store',validateMiddleware);
 //add Global variable available from all ejs files
-global.loggedIn = null;
+
 
 //use on all requests
 app.use('*', (req, res, next) =>{
@@ -48,8 +54,8 @@ app.use('*', (req, res, next) =>{
     next();
 })
 
-app.use(flash());
 
+// const BlogPost = require('./models/BlogPost.js');
 
 
 
