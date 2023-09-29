@@ -1,6 +1,6 @@
 "use strict";
 
-const express = require("express"),
+express = require("express"),
   app = express(),
   router = require("./routes/index"),
   layouts = require("express-ejs-layouts"),
